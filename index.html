@@ -9,32 +9,31 @@
 	<h1> {{product.name }}	</h1>
 	<h2> {{product.price | currency }}	</h2>
 	<p> {{product.description}}	</p>
-   <section ng-init="tab = 1" ng-controller="PanelController as panel">
+   <section  ng-controller="PanelController as panel">
      <ul class="nav nav-pills">
-     	<li ng-class="{ active:tab === 1}" > 
-     		<a href ng-click="tab = 1">Description</a> 
+     	<li ng-class="{ active:panel.isSelected(1)}" > 
+     		<a href ng-click="panel.selectTab(1)">Description</a> 
      	</li>
-     	<li ng-class="{ active:tab === 2}" > 
-     	 <a href ng-click=panel.selectTab(2)>Specification</a> 
+     	<li ng-class="{ active:panel.isSelected(2)}" > 
+     	 <a href ng-click="panel.selectTab(2)">Specification</a> 
      	</li>
-     	<li ng-class="{ active:tab === 3}" > 
-     	 <a href ng-click=panel.selectTab(1)>Reviews</a>
+     	<li ng-class="{ active:panel.isSelected(3)}" > 
+     	 <a href ng-click="panel.selectTab(3)">Reviews</a>
      	  </li>
-     </ul>     
- </section>
-
-	<div class="panel" ng-show="tab === 1">
+     </ul>      
+	<div class="panel" ng-show="panel.isSelected(1)">
 		<h4> Description </h4>
 		 <p> {{product.description}}	</p>
 	</div>
-	<div class="panel" ng-show="tab === 2">
+	<div class="panel" ng-show="panel.isSelected(2)">
 		<h4> Specification </h4>
 		 <p> Non yet</p>
 	</div>
-	<div class="panel" ng-show="tab === 3">
+	<div class="panel" ng-show="panel.isSelected(3)">
 		<h4> Reviews </h4>
 		 <p> Non yet</p>
 	</div>
+	</section>
 	<img ng-src="{{product.images[0].full}}"
    <button ng-show="store.products[0].canPurchase"> Add to Cart </button>
 </div>
