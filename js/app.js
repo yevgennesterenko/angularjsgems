@@ -1,7 +1,14 @@
 (function() {
     var app = angular.module('store', []);
     app.controller('StoreController', function() {
-        this.products = gems;
+          this.products = gems;        
+    });
+
+   app.controller('ReviewController', function() {  
+        this.addReview = function(product) {
+          product.reviews.push(this.review);
+          this.review ={};
+      };
     });
 
     app.controller('PanelController', function() {    
@@ -12,6 +19,13 @@
     this.isSelected = function(checkTab){
         return this.tab == checkTab;
     };
+     this.setCurrent = function(value) {
+       if (value !== undefined) {
+         this.current = value;
+       } else {
+           this.current = 0;
+       };      
+     };
     });
     var gems = [
     {
@@ -29,6 +43,18 @@
         	full: 'dodecahedron-01-full.jpg',
         	thumb: 'dodecahedron-02-thumb.jpg'
         }
+        ],
+        reviews: [
+        {
+            stars: 5,
+            body: "I love this product!",
+            author: "joe@thomas.com"
+        },
+        {
+            stars: 1,
+            body: "This product sucks!",
+            author: "tim@hater.com"        
+        }
         ]
     },
     {
@@ -45,6 +71,18 @@
 		{
         	full: 'pentagonal-01-full.jpg',
         	thumb: 'pentagonal-02-thumb.jpg'
+        }
+        ],
+        reviews: [
+        {
+            stars: 5,
+            body: "I love this product!",
+            author: "joe@thomas.com"
+        },
+        {
+            stars: 1,
+            body: "This product sucks!",
+            author: "tim@hater.com"
         }
         ]
     }
