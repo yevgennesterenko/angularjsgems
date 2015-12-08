@@ -11,9 +11,26 @@
     app.directive('productPanels', function(){
       return {
         restrict: 'E',
-        templateUrl: 'product-panels.html'
-      };
-    }) ;
+        templateUrl: 'product-panels.html',
+        controller:function(){
+              this.tab = 1;
+              this.selectTab = function(setTab)  {
+              this.tab = setTab;        
+              };
+              this.isSelected = function(checkTab){
+                return this.tab == checkTab;
+              };
+             this.setCurrent = function(value) {
+              if (value !== undefined) {
+               this.current = value;
+               } else {
+                this.current = 0;
+               };      
+             };        
+           },
+         controllerAs: 'panel'
+       };
+      });
 
     app.controller('StoreController', function() {
           this.products = gems;        
@@ -26,23 +43,7 @@
           this.review ={};
       };
     });
-
-    app.controller('PanelController', function() {    
-    this.tab = 1;
-    this.selectTab = function(setTab)  {
-    	this.tab = setTab;        
-    };
-    this.isSelected = function(checkTab){
-        return this.tab == checkTab;
-    };
-     this.setCurrent = function(value) {
-       if (value !== undefined) {
-         this.current = value;
-       } else {
-           this.current = 0;
-       };      
-     };
-    });
+  
     var gems = [
     {
         name: "Dodecahedron",
